@@ -1,0 +1,23 @@
+
+<trigger>
+  <name>LoanApplicationStatusUpdate</name>
+  <description>Trigger for updating the status of a loan application</description>
+  <event>
+    <type>LoanApplicationSubmitted</type>
+    <channel>InPerson</channel>
+  </event>
+  <event>
+    <type>LoanApplicationSubmitted</type>
+    <channel>Website</channel>
+  </event>
+  <event>
+    <type>LoanApplicationSubmitted</type>
+    <channel>MobileApp</channel>
+  </event>
+  <action>
+    <type>UpdateLoanApplicationStatus</type>
+    <parameters>
+      <status>Submitted</status>
+    </parameters>
+  </action>
+</trigger>
