@@ -1,0 +1,11 @@
+
+<trigger>
+  <name>LoanApprovalLetterTrigger</name>
+  <description>Trigger to generate loan approval letters</description>
+  <conditions>
+    <condition>LoanApplicationStatus = "Approved"</condition>
+  </conditions>
+  <actions>
+    <action>GenerateLoanApprovalLetter</action>
+  </actions>
+</trigger>
