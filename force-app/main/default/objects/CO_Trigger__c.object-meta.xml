@@ -1,0 +1,88 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Applicant__c</name>
+    <label>Applicant</label>
+    <pluralLabel>Applicants</pluralLabel>
+    <nameField>
+        <label>Applicant Name</label>
+        <type>Text</type>
+    </nameField>
+    <fields>
+        <fullName>SSN__c</fullName>
+        <externalId>false</externalId>
+        <label>SSN</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Income__c</fullName>
+        <externalId>false</externalId>
+        <label>Income</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+    </fields>
+    <fields>
+        <fullName>Pre_Qualified__c</fullName>
+        <externalId>false</externalId>
+        <label>Pre-Qualified</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+</CustomObject>
+
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>PreQualification__c</name>
+    <label>Pre-Qualification</label>
+    <pluralLabel>Pre-Qualifications</pluralLabel>
+    <nameField>
+        <label>Pre-Qualification Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <fields>
+        <fullName>Applicant__c</fullName>
+        <externalId>false</externalId>
+        <label>Applicant</label>
+        <referenceTo>Applicant__c</referenceTo>
+        <relationshipLabel>Applicant</relationshipLabel>
+        <relationshipName>Applicant</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Loan_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Loan Amount</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Interest_Rate_Low__c</fullName>
+        <externalId>false</externalId>
+        <label>Interest Rate Low</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Interest_Rate_High__c</fullName>
+        <externalId>false</externalId>
+        <label>Interest Rate High</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+    </fields>
+</CustomObject>
