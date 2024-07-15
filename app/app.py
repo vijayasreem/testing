@@ -1,46 +1,46 @@
-Sure! Here's an example of a Python Flask API code that implements the given user story:
+Here is an example of a Python Flask API code that can be used to implement the Comprehensive Applicant Notification System:
 
 ```python
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/apply', methods=['POST'])
-def apply_for_loan():
-    # Get the loan application details from the request
-    application_details = request.get_json()
-
-    # Validate the entered details
-    if not validate_details(application_details):
-        return jsonify({'error': 'Invalid details'}), 400
-
-    # Store the application details securely
-    store_application_details(application_details)
-
-    # Send a confirmation message to the customer
-    send_confirmation_message(application_details['email'])
-
+@app.route('/submit_application', methods=['POST'])
+def submit_application():
+    # Code to submit the loan application
+    # Send notification to the applicant
+    # Return success response
     return jsonify({'message': 'Loan application submitted successfully'})
 
-def validate_details(details):
-    # Perform validation logic here
-    # Return True if details are valid, False otherwise
-    return True
+@app.route('/update_status', methods=['POST'])
+def update_status():
+    # Code to update the application status
+    # Send notification to the applicant
+    # Return success response
+    return jsonify({'message': 'Application status updated successfully'})
 
-def store_application_details(details):
-    # Store the application details securely
-    # Implement the storage logic here
-    pass
+@app.route('/send_loan_offer', methods=['POST'])
+def send_loan_offer():
+    # Code to send the loan offer details
+    # Send notification to the applicant
+    # Return success response
+    return jsonify({'message': 'Loan offer sent successfully'})
 
-def send_confirmation_message(email):
-    # Send a confirmation message to the customer
-    # Implement the message sending logic here
-    pass
+@app.route('/send_disbursement', methods=['POST'])
+def send_disbursement():
+    # Code to send the disbursement details
+    # Send notification to the applicant
+    # Return success response
+    return jsonify({'message': 'Disbursement details sent successfully'})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 ```
 
-In this code, we define a Flask API with a single route `/apply` that accepts POST requests. The `apply_for_loan` function handles the loan application process. It validates the entered details, stores the application details securely, and sends a confirmation message to the customer.
+This code defines four routes: `/submit_application`, `/update_status`, `/send_loan_offer`, and `/send_disbursement`. Each route corresponds to a specific action in the user story.
 
-Please note that this is a basic example and you may need to modify it to fit your specific requirements and integrate it with your database and email sending services.
+To implement the complete system, you will need to add the necessary logic to handle the loan application submission, status updates, loan offer sending, and disbursement sending. You will also need to integrate with the loan application system, communication service providers, and data protection tools as mentioned in the user story.
+
+Additionally, you will need to implement the user interface for applicants to select their preferred notification method and handle the delivery of notifications through email, SMS, or push notifications.
+
+Remember to test and verify the functionality of the API endpoints, ensure the notifications are sent in a timely manner, and comply with data protection and privacy regulations.
