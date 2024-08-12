@@ -1,0 +1,29 @@
+
+<trigger>
+  <userStory>
+    <as>A customer</as>
+    <want>To apply for a car mortgage loan through the bank's website</want>
+    <so>That I can conveniently submit my application online</so>
+  </userStory>
+  <acceptanceCriteria>
+    <criteria>The bank's website should have a dedicated section for car mortgage loan applications.</criteria>
+    <criteria>The online application form should be accessible from the homepage or a clearly marked menu.</criteria>
+    <criteria>The application form should include fields for personal information, contact details, employment details, income information, and loan amount requested.</criteria>
+    <criteria>The form should allow customers to upload necessary documents such as identification, proof of income, and employment details.</criteria>
+    <criteria>The system should validate the entered information and uploaded documents for completeness and correctness before submission.</criteria>
+    <criteria>Customers should receive a confirmation message upon successful submission of the application.</criteria>
+    <criteria>The system should generate a unique application ID for tracking purposes.</criteria>
+    <criteria>The website should be accessible on various devices, including desktops, tablets, and smartphones.</criteria>
+    <criteria>The application process should comply with data protection and privacy regulations.</criteria>
+  </acceptanceCriteria>
+  <definitionOfDone>
+    <done>The online application form is fully functional and accessible from the bank's website.</done>
+    <done>All required fields and document upload functionalities are implemented and working correctly.</done>
+    <done>The system performs validation checks on the entered information and uploaded documents.</done>
+    <done>Customers receive a confirmation message with a unique application ID upon successful submission.</done>
+    <done>The application form is tested for compatibility across different devices and browsers.</done>
+    <done>The application process is reviewed and approved for compliance with data protection and privacy regulations.</done>
+    <done>User acceptance testing (UAT) is completed, and feedback is incorporated.</done>
+    <done>The feature is deployed to the production environment and is live for customer use.</done>
+  </definitionOfDone>
+</trigger>

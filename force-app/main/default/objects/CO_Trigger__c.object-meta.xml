@@ -1,0 +1,59 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>CarMortgageLoanApplication__c</name>
+    <label>Car Mortgage Loan Application</label>
+    <pluralLabel>Car Mortgage Loan Applications</pluralLabel>
+    <nameField>
+        <label>Application Name</label>
+        <type>Text</type>
+    </nameField>
+    <fields>
+        <fullName>Contact_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Details</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Employment_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Employment Details</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Income_Information__c</fullName>
+        <externalId>false</externalId>
+        <label>Income Information</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Loan_Amount_Requested__c</fullName>
+        <externalId>false</externalId>
+        <label>Loan Amount Requested</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>ApplicationID__c</fullName>
+        <externalId>false</externalId>
+        <label>Application ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>ConfirmationMessage__c</fullName>
+        <externalId>false</externalId>
+        <label>Confirmation Message</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+    </fields>
+</CustomObject>
