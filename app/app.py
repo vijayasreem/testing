@@ -1,55 +1,71 @@
-Sure! Here's an example of a Python Flask API code that can help optimize traffic load for swift response and effective incident management:
+Here is an example of Python Flask API code that implements the given user story:
 
 ```python
 from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///incident.db'
-db = SQLAlchemy(app)
 
-class Incident(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    status = db.Column(db.String(20), default='Open')
+# Store the notification history in memory for simplicity
+notification_history = []
 
-    def __repr__(self):
-        return f"Incident('{self.title}', '{self.status}')"
+@app.route('/loan/approval', methods=['POST'])
+def loan_approval():
+    loan_data = request.json
 
-@app.route('/incidents', methods=['GET'])
-def get_incidents():
-    incidents = Incident.query.all()
-    result = []
-    for incident in incidents:
-        result.append({
-            'id': incident.id,
-            'title': incident.title,
-            'description': incident.description,
-            'status': incident.status
-        })
-    return jsonify(result)
+    # Check if the loan status is "Approved"
+    if loan_data['status'] == 'Approved':
+        # Trigger notification
+        send_notification(loan_data)
 
-@app.route('/incidents', methods=['POST'])
-def create_incident():
-    data = request.get_json()
-    incident = Incident(title=data['title'], description=data['description'])
-    db.session.add(incident)
-    db.session.commit()
-    return jsonify({'message': 'Incident created successfully'})
+        # Store the notification in the history
+        notification_history.append(loan_data)
+
+        return jsonify({'message': 'Notification sent'})
+    else:
+        return jsonify({'message': 'Loan not approved'})
+
+def send_notification(loan_data):
+    # Get the customer's notification preferences from the database
+    customer_preferences = get_notification_preferences(loan_data['customer_id'])
+
+    # Send notification through email
+    if customer_preferences['email']:
+        send_email_notification(loan_data)
+
+    # Send notification through SMS
+    if customer_preferences['sms']:
+        send_sms_notification(loan_data)
+
+    # Send notification through in-app notification
+    if customer_preferences['in_app']:
+        send_in_app_notification(loan_data)
+
+def get_notification_preferences(customer_id):
+    # Retrieve the customer's notification preferences from the database
+    # Return a dictionary with the preferences (e.g., {'email': True, 'sms': False, 'in_app': True})
+    # You can implement this function based on your database structure
+
+    # Example implementation:
+    return {'email': True, 'sms': True, 'in_app': True}
+
+def send_email_notification(loan_data):
+    # Implement email notification logic here
+    pass
+
+def send_sms_notification(loan_data):
+    # Implement SMS notification logic here
+    pass
+
+def send_in_app_notification(loan_data):
+    # Implement in-app notification logic here
+    pass
+
+@app.route('/notifications', methods=['GET'])
+def get_notifications():
+    return jsonify(notification_history)
 
 if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-This code sets up a Flask API with two endpoints: `/incidents` for retrieving incidents and `/incidents` (POST) for creating incidents. It uses SQLite as the database for storing incidents.
-
-To optimize traffic load and ensure swift response, you can consider the following strategies:
-
-1. Use a load balancer to distribute incoming requests across multiple servers.
-2. Implement caching mechanisms to reduce the load on the database.
-3. Use asynchronous processing for time-consuming tasks to avoid blocking the main thread.
-4. Implement rate limiting to prevent abuse and ensure fair resource allocation.
-5. Monitor system performance and use performance profiling tools to identify bottlenecks and optimize code.
-
-Remember to customize and enhance this code based on your specific requirements and infrastructure setup.
+Please note that this is a basic implementation and you will need to fill in the logic for sending notifications through email, SMS, and in-app notifications. You will also need to implement the database functions to retrieve and store notification preferences and history. Additionally, you should consider implementing security measures and compliance with relevant regulations and data protection laws.
