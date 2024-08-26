@@ -1,71 +1,48 @@
-Here is an example of Python Flask API code that implements the given user story:
+Sure! Here's an example of a Python Flask API code that filters a list of customer data by age:
 
 ```python
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Store the notification history in memory for simplicity
-notification_history = []
+@app.route('/filter_customers', methods=['POST'])
+def filter_customers():
+    customers = request.json.get('customers', [])
+    age_range = request.json.get('age_range', '')
 
-@app.route('/loan/approval', methods=['POST'])
-def loan_approval():
-    loan_data = request.json
+    filtered_customers = []
+    if customers and age_range:
+        min_age, max_age = map(int, age_range.split('-'))
+        filtered_customers = [customer for customer in customers if min_age <= customer['age'] <= max_age]
 
-    # Check if the loan status is "Approved"
-    if loan_data['status'] == 'Approved':
-        # Trigger notification
-        send_notification(loan_data)
-
-        # Store the notification in the history
-        notification_history.append(loan_data)
-
-        return jsonify({'message': 'Notification sent'})
-    else:
-        return jsonify({'message': 'Loan not approved'})
-
-def send_notification(loan_data):
-    # Get the customer's notification preferences from the database
-    customer_preferences = get_notification_preferences(loan_data['customer_id'])
-
-    # Send notification through email
-    if customer_preferences['email']:
-        send_email_notification(loan_data)
-
-    # Send notification through SMS
-    if customer_preferences['sms']:
-        send_sms_notification(loan_data)
-
-    # Send notification through in-app notification
-    if customer_preferences['in_app']:
-        send_in_app_notification(loan_data)
-
-def get_notification_preferences(customer_id):
-    # Retrieve the customer's notification preferences from the database
-    # Return a dictionary with the preferences (e.g., {'email': True, 'sms': False, 'in_app': True})
-    # You can implement this function based on your database structure
-
-    # Example implementation:
-    return {'email': True, 'sms': True, 'in_app': True}
-
-def send_email_notification(loan_data):
-    # Implement email notification logic here
-    pass
-
-def send_sms_notification(loan_data):
-    # Implement SMS notification logic here
-    pass
-
-def send_in_app_notification(loan_data):
-    # Implement in-app notification logic here
-    pass
-
-@app.route('/notifications', methods=['GET'])
-def get_notifications():
-    return jsonify(notification_history)
+    return jsonify(filtered_customers)
 
 if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-Please note that this is a basic implementation and you will need to fill in the logic for sending notifications through email, SMS, and in-app notifications. You will also need to implement the database functions to retrieve and store notification preferences and history. Additionally, you should consider implementing security measures and compliance with relevant regulations and data protection laws.
+To test the API, you can send a POST request to `http://localhost:5000/filter_customers` with the following JSON payload:
+
+```json
+{
+  "customers": [
+    {"name": "John", "age": 30},
+    {"name": "Alice", "age": 25},
+    {"name": "Bob", "age": 40}
+  ],
+  "age_range": "20-30"
+}
+```
+
+The API will return the filtered list of customers within the specified age range:
+
+```json
+[
+  {"name": "John", "age": 30},
+  {"name": "Alice", "age": 25}
+]
+```
+
+If the `customers` list is empty or the `age_range` is not specified, the API will return an empty list.
+
+Please note that this is a basic implementation and you may need to modify it based on your specific requirements.
