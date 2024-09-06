@@ -1,0 +1,40 @@
+
+<Trigger>
+    <Name>FFApprovalRequestTrigger</Name>
+    <Object>Case</Object>
+    <Events>before insert, before update</Events>
+    <Actions>
+        <Action>
+            <Type>FormAccess</Type>
+            <Role>LSO</Role>
+            <Form>FFApprovalRequestForm</Form>
+        </Action>
+        <Action>
+            <Type>SubmitRequest</Type>
+            <Role>LSO</Role>
+            <Form>FFApprovalRequestForm</Form>
+            <OnSubmit>
+                <SendRequestTo>QC2, RegionalManager</SendRequestTo>
+                <UpdateStatus>F&F Approval Pending with QC2</UpdateStatus>
+                <SendAutoMailer>
+                    <To>QC2, RegionalManager</To>
+                    <Details>BasicCaseDetails</Details>
+                </SendAutoMailer>
+            </OnSubmit>
+        </Action>
+        <Action>
+            <Type>ReviewRequest</Type>
+            <Role>QC2, RegionalManager</Role>
+            <OnReview>
+                <CaptureDecision>
+                    <ApprovalStatus>Approved, Rejected</ApprovalStatus>
+                    <Remarks>QC2, RegionalManager</Remarks>
+                </CaptureDecision>
+                <UpdateStatus>
+                    <IfApproved>Approved</IfApproved>
+                    <IfRejected>Rejected</IfRejected>
+                </UpdateStatus>
+            </OnReview>
+        </Action>
+    </Actions>
+</Trigger>
